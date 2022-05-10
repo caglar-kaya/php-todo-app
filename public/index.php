@@ -21,6 +21,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "id: " . $row["id"] . " - Title: " . $row["title"];
         echo "<a href='delete.php?id={$row["id"]}'>X</a>";
+        echo "<a href='update.php?id={$row["id"]}&mode=form'><button type=\"button\">Edit</button></a>";
         echo "<br>";
     }
 } else {

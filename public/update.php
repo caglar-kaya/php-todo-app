@@ -1,3 +1,5 @@
+<html>
+<body>
 <?php
 $servername = "mysql";
 $username = "php-todo-app";
@@ -10,20 +12,25 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-$sql = "UPDATE `php-todo-app`.`todoItems` SET `title`='learn HTML' WHERE  `id`=22";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Record updated successfully";
+if ($_GET["mode"] === "form") {
+    echo '<form method="post" action="update.php">
+    <input type="hidden" value="'.$_GET["id"].'" name="id"> 
+        Title: <input type="text" name="title">
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+    </form>';
 } else {
-    echo "Error updating record: " . $conn->error;
+    $sql = "UPDATE `php-todo-app`.`todoItems` SET `title`='{$_POST["title"]}' WHERE  `id`={$_POST["id"]}";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record updated successfully";
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
 }
 
 $conn->close();
 ?>
-
-<html>
-<body>
 <br>
 <br>
 <a href="index.php">
