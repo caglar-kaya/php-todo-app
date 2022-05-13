@@ -12,11 +12,11 @@ if ($conn->connect_error) {
 }
 
 // create a query
-$sql = "INSERT INTO `php-todo-app`.`todoItems` (`title`) VALUES ('{$_POST["title"]}')";
+$sql = "INSERT INTO `php-todo-app`.`todoItems` (`title`, `assignedTo`) VALUES ('{$_POST["title"]}', '{$_POST["assign"]}')";
 
 // run the query
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully!";
+    echo "<h3>New todo assigned to {$_POST["assign"]} successfully!</h3>";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
@@ -25,11 +25,12 @@ $conn->close();
 ?>
 
 <html>
+<head>
+    <title>PHP Todo App</title>
+</head>
 <body>
-<br>
-<br>
 <a href="index.php">
-    <button type="button">Go back!</button>
+    <button type="button">Go to Todos!</button>
 </a>
 </body>
 </html>
