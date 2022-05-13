@@ -23,14 +23,20 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"] . " - Title: " . $row["title"];
-        echo "<a href='delete.php?id={$row["id"]}'>X</a>";
+        echo "<strong>ID: </strong>" . $row["id"] . " --- " .
+             "<strong>Title: </strong>" . $row["title"] . " --- " .
+             "<strong>Assigned to: </strong>" . $row["assignedTo"] . " --- " .
+             "<strong>Completed: </strong>" . (($row["completed"]) ? "<span>&#9989</span>" : "<span>&#10060</span>");
+        echo " ";
+        echo "<a href='delete.php?id={$row["id"]}'><button type=\"button\">Delete</button></a>";
+        echo " ";
         echo "<a href='update.php?id={$row["id"]}&mode=form'><button type=\"button\">Edit</button></a>";
         echo "<br>";
     }
 } else {
-    echo "0 results";
+    echo "<h3>There isn't any todo item yet!</h3>";
 }
+
 $conn->close();
 ?>
 <h1>PHP Todo App</h1>
