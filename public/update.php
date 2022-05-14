@@ -1,4 +1,7 @@
 <html>
+<head>
+    <title>PHP Todo App</title>
+</head>
 <body>
 <?php
 $servername = "mysql";
@@ -13,28 +16,33 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 if ($_GET["mode"] === "form") {
-    echo '<form method="post" action="update.php">
-    <input type="hidden" value="'.$_GET["id"].'" name="id"> 
-        Title: <input type="text" name="title">
-        <br>
-        <br>
-        <input type="submit" value="Submit">
-    </form>';
+    echo '
+        <form method="post" action="update.php">
+            <input type="hidden" value="'.$_GET["id"].'" name="id">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title"><br><br>
+            <label for="assign">Assigned to:</label>
+            <input type="text" id="assign" name="assign"><br><br>
+            <label for="complete">Completed:</label>
+            <select name="complete" id="complete">
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        ';
 } else {
-    $sql = "UPDATE `php-todo-app`.`todoItems` SET `title`='{$_POST["title"]}' WHERE  `id`={$_POST["id"]}";
+    $sql = "UPDATE `php-todo-app`.`todoItems` SET `title`='{$_POST["title"]}', `assignedTo`='{$_POST["assign"]}', `completed`='{$_POST["complete"]}' WHERE  `id`={$_POST["id"]}";
     if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully";
+        echo "<h3>Todo updated for {$_POST["assign"]} successfully!</h3>";
     } else {
         echo "Error updating record: " . $conn->error;
     }
 }
-
 $conn->close();
 ?>
-<br>
-<br>
 <a href="index.php">
-    <button type="button">Go back!</button>
+    <button type="button">Go to Todos!</button>
 </a>
 </body>
 </html>
