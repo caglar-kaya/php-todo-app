@@ -26,7 +26,9 @@ if ($result->num_rows > 0) {
         echo "<strong>ID: </strong>" . $row["id"] . " --- " .
              "<strong>Title: </strong>" . $row["title"] . " --- " .
              "<strong>Assigned to: </strong>" . $row["assignedTo"] . " --- " .
-             "<strong>Completed: </strong>" . (($row["completed"]) ? "<span>&#9989</span>" : "<span>&#10060</span>");
+             "<strong>Completed: </strong>" . (($row["completed"]) ?
+                "<img src=\"./complete.png\" alt=\"Complete Todo\" width=\"50\" height=\"50\"" :
+                "<img src=\"./incomplete.png\" alt=\"Incomplete Todo\" width=\"40\" height=\"40\"");
         echo " ";
         echo "<a href='delete.php?id={$row["id"]}'><button type=\"button\">Delete</button></a>";
         echo " ";
