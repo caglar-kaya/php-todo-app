@@ -1,8 +1,3 @@
-<html>
-<head>
-    <title>PHP Todo App</title>
-</head>
-<body>
 <?php
 $servername = "mysql";
 $username = "php-todo-app";
@@ -40,9 +35,5 @@ if ($_GET["mode"] === "form") {
     }
 }
 $conn->close();
-?>
-<a href="index.php">
-    <button type="button">Go to Todos!</button>
-</a>
-</body>
-</html>
+
+require  'update.view.php';
