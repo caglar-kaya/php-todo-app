@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 $sql = "DELETE FROM `php-todo-app`.`todoItems` WHERE  `id`={$_GET['id']}";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Record deleted successfully";
+    echo "<h3>{$_GET['assign']}'s todo deleted successfully!</h3>";
 } else {
     echo "Error deleting record: " . $conn->error;
 }
@@ -23,11 +23,12 @@ $conn->close();
 ?>
 
 <html>
+<head>
+    <title>PHP Todo App</title>
+</head>
 <body>
-<br>
-<br>
 <a href="index.php">
-    <button type="button">Go back!</button>
+    <button type="button">Go to Todos!</button>
 </a>
 </body>
 </html>
