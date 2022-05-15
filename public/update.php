@@ -13,6 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 if ($_GET["mode"] === "form") {
+    echo "<h1>PHP Todo App</h1>";
     echo '
         <form method="post" action="update.php">
             <input type="hidden" value="'.$_GET["id"].'" name="id">
@@ -31,8 +32,10 @@ if ($_GET["mode"] === "form") {
 } else {
     $sql = "UPDATE `php-todo-app`.`todoItems` SET `title`='{$_POST["title"]}', `assignedTo`='{$_POST["assign"]}', `completed`='{$_POST["complete"]}' WHERE  `id`={$_POST["id"]}";
     if ($conn->query($sql) === TRUE) {
+        echo "<h1>PHP Todo App</h1>";
         echo "<h3>Todo updated for {$_POST["assign"]} successfully!</h3>";
     } else {
+        echo "<h1>PHP Todo App</h1>";
         echo "Error updating record: " . $conn->error;
     }
 }
