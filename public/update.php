@@ -1,3 +1,5 @@
+<style><?php include '../css/index.css'; ?></style>
+
 <?php
 $servername = "mysql";
 $username = "php-todo-app";
@@ -15,15 +17,15 @@ if ($_GET["mode"] === "form") {
         <form method="post" action="update.php">
             <input type="hidden" value="'.$_GET["id"].'" name="id">
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title"><br><br>
+            <input type="text" id="title" name="title" class="inputText" placeholder="update todo title"><br><br>
             <label for="assign">Assigned to:</label>
-            <input type="text" id="assign" name="assign"><br><br>
+            <input type="text" id="assign" name="assign" class="inputText" placeholder="update name to assign todo"><br><br>
             <label for="complete">Completed:</label>
             <select name="complete" id="complete">
               <option value="1">Yes</option>
               <option value="0">No</option>
             </select><br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" class="submit">
         </form>
         ';
 } else {

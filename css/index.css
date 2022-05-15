@@ -73,3 +73,10 @@ h3 {
 .goToBtn {
     width: 150px;
 }
+
+select {
+    border: solid 1px var(--main-border-color);
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
