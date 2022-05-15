@@ -17,6 +17,7 @@ $sql = "SELECT * FROM todoItems";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
+    echo "<h1>PHP Todo App</h1>";
     // output data of each row
     while ($row = $result->fetch_assoc()) {
         echo "<strong>ID: </strong>" . $row["id"] .
@@ -30,6 +31,7 @@ if ($result->num_rows > 0) {
         echo "<br>";
     }
 } else {
+    echo "<h1>PHP Todo App</h1>";
     echo "<h3>There isn't any todo item yet!</h3>";
 }
 
