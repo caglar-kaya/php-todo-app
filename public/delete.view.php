@@ -5,7 +5,7 @@
     </head>
     <body>
         <a href="index.php">
-            <button type="button">Go to Todos!</button>
+            <button type="button" class="goToBtn">Go to Todos!</button>
         </a>
     </body>
 </html>
