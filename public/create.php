@@ -18,8 +18,10 @@ $sql = "INSERT INTO `php-todo-app`.`todoItems` (`title`, `assignedTo`) VALUES ('
 
 // run the query
 if ($conn->query($sql) === TRUE) {
+    echo "<h1>PHP Todo App</h1>";
     echo "<h3>New todo assigned to {$_POST["assign"]} successfully!</h3>";
 } else {
+    echo "<h1>PHP Todo App</h1>";
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
