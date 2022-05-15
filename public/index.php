@@ -1,3 +1,5 @@
+<style><?php include '../css/index.css'; ?></style>
+
 <?php
 $servername = "mysql";
 $username = "php-todo-app";
@@ -17,9 +19,9 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        echo "<strong>ID: </strong>" . $row["id"] . " --- " .
-             "<strong>Title: </strong>" . $row["title"] . " --- " .
-             "<strong>Assigned to: </strong>" . $row["assignedTo"] . " --- " .
+        echo "<strong>ID: </strong>" . $row["id"] .
+             "<strong>Title: </strong>" . $row["title"] .
+             "<strong>Assigned to: </strong>" . $row["assignedTo"] .
              '<strong>Completed: </strong>' . ( $row["completed"] ?
                  '<img src="./complete.png" alt="Complete Todo" width="50" height="50">' :
                  '<img src="./incomplete.png" alt="Incomplete Todo" width="40" height="40">');
