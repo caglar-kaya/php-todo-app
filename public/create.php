@@ -1,3 +1,5 @@
+<style><?php include '../css/index.css'; ?></style>
+
 <?php
 $servername = "mysql";
 $username = "php-todo-app";
