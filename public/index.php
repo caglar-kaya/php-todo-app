@@ -1,10 +1,14 @@
 <style><?php include '../css/index.css'; ?></style>
 
 <?php
-$servername = "mysql";
-$username = "php-todo-app";
-$password = "password";
-$dbname = "php-todo-app";
+$config = require '../config.php';
+
+$database = $config['database'];
+
+$servername = $database['servername'];
+$username = $database['username'];
+$password = $database['password'];
+$dbname = $database['dbname'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
