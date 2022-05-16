@@ -8,7 +8,7 @@ $todos = $repo->getAll();
 
 echo "<h1>PHP Todo App</h1>";
 
-if (count($todos)) {
+if (count($todos) > 0) {
     /** @var TodoItem $todo */
     foreach($todos as $todo){
         echo "<strong>ID: </strong>" . $todo->id .
