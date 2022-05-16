@@ -4,7 +4,6 @@
 include '../database/TodoItemRepository.php';
 
 $repo = new TodoItemRepository();
-
 $todos = $repo->getAll();
 
 echo "<h1>PHP Todo App</h1>";
