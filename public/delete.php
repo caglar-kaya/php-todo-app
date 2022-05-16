@@ -1,28 +1,13 @@
 <style><?php include '../css/index.css'; ?></style>
 
 <?php
-$servername = "mysql";
-$username = "php-todo-app";
-$password = "password";
-$dbname = "php-todo-app";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include '../database/TodoItemRepository.php';
 
-$sql = "DELETE FROM `php-todo-app`.`todoItems` WHERE  `id`={$_GET['id']}";
+$repo = new TodoItemRepository();
 
-if ($conn->query($sql) === TRUE) {
-    echo "<h1>PHP Todo App</h1>";
-    echo "<h3>{$_GET['assign']}'s todo deleted successfully!</h3>";
-} else {
-    echo "<h1>PHP Todo App</h1>";
-    echo "Error deleting record: " . $conn->error;
-}
+echo "<h1>PHP Todo App</h1>";
 
-$conn->close();
+$repo->deleteTodo();
 
 require  'delete.view.php';

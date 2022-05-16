@@ -29,14 +29,27 @@ class TodoItemRepository {
         $connection = new Connection();
         $conn = $connection->create();
 
-        // create a query
         $sql = "INSERT INTO `php-todo-app`.`todoItems` (`title`, `assignedTo`) VALUES ('{$_POST["title"]}', '{$_POST["assign"]}')";
 
-        // run the query
         if ($conn->query($sql) === TRUE) {
             echo "<h3>New todo assigned to {$_POST["assign"]} successfully!</h3>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        $conn->close();
+    }
+
+    public function deleteTodo(): void {
+        $connection = new Connection();
+        $conn = $connection->create();
+
+        $sql = "DELETE FROM `php-todo-app`.`todoItems` WHERE  `id`={$_GET['id']}";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<h3>{$_GET['assign']}'s todo deleted successfully!</h3>";
+        } else {
+            echo "Error deleting record: " . $conn->error;
         }
 
         $conn->close();
