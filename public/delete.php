@@ -10,4 +10,4 @@ echo "<h1>PHP Todo App</h1>";
 
 $repo->deleteTodo();
 
-require  'delete.view.php';
+require '../views/delete.view.php';

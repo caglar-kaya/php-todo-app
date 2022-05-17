@@ -10,4 +10,4 @@ echo "<h1>PHP Todo App</h1>";
 
 $repo->updateTodo();
 
-require  'update.view.php';
+require '../views/update.view.php';

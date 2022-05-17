@@ -25,4 +25,4 @@ if (count($todos) > 0) {
     echo "<h3>There isn't any todo item yet!</h3>";
 }
 
-require 'index.view.php';
+require '../views/index.view.php';
