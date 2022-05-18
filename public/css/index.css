@@ -84,3 +84,14 @@ select {
     padding: 5px;
     border-radius: 5px;
 }
+
+.create-form {
+    border: solid 1px var(--main-border-color);
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.showBtn {
+    width: fit-content;
+}

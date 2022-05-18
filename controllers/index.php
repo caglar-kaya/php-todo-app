@@ -14,8 +14,8 @@ if (count($todos) > 0) {
             "<strong>Title: </strong>" . $todo->title .
             "<strong>Assigned to: </strong>" . $todo->assignedTo .
             '<strong>Completed: </strong>' . ( $todo->completed ?
-                '<img src="./complete.png" alt="Complete Todo" width="50" height="50">' :
-                '<img src="./incomplete.png" alt="Incomplete Todo" width="40" height="40">');
+                '<img src="/images/complete.png" alt="Complete Todo" width="50" height="50">' :
+                '<img src="/images/incomplete.png" alt="Incomplete Todo" width="40" height="40">');
         echo "<a href='delete?id={$todo->id}&assign={$todo->assignedTo}'><button type=\"button\">Delete</button></a>";
         echo "<a href='update?id={$todo->id}&mode=form'><button type=\"button\">Edit</button></a>";
         echo "<br>";
