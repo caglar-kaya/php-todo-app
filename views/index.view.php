@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>PHP Todo App</title>
-        <link rel="stylesheet" href="/css/index.css">
-    </head>
-    <body>
+<?php include 'partials/head.php' ?>
         <form method="post" action="create">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" class="inputText" placeholder="enter todo title"><br><br>
@@ -13,5 +6,4 @@
             <input type="text" id="assign" name="assign" class="inputText" placeholder="enter a name to assign todo"><br><br>
             <input type="submit" value="Submit" class="submit">
         </form>
-    </body>
-</html>
+<?php include 'partials/footer.php'; ?>
