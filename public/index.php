@@ -1,28 +1,23 @@
-<style><?php include '../css/index.css'; ?></style>
-
 <?php
-include '../database/TodoItemRepository.php';
 
-$repo = new TodoItemRepository();
-$todos = $repo->getAll();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-echo "<h1>PHP Todo App</h1>";
+include '../router/Router.php';
+include '../router/routes.php';
 
-if (count($todos) > 0) {
-    /** @var TodoItem $todo */
-    foreach($todos as $todo){
-        echo "<strong>ID: </strong>" . $todo->id .
-             "<strong>Title: </strong>" . $todo->title .
-             "<strong>Assigned to: </strong>" . $todo->assignedTo .
-             '<strong>Completed: </strong>' . ( $todo->completed ?
-                 '<img src="./complete.png" alt="Complete Todo" width="50" height="50">' :
-                 '<img src="./incomplete.png" alt="Incomplete Todo" width="40" height="40">');
-        echo "<a href='delete.php?id={$todo->id}&assign={$todo->assignedTo}'><button type=\"button\">Delete</button></a>";
-        echo "<a href='update.php?id={$todo->id}&mode=form'><button type=\"button\">Edit</button></a>";
-        echo "<br>";
-    }
-} else {
-    echo "<h3>There isn't any todo item yet!</h3>";
+$router = new Router();
+
+$router->define($routes);
+
+$uri = trim($_SERVER['REQUEST_URI'], '/');
+
+$routeName = $uri;
+
+$posOfQuestionMark = strpos($uri,'?');
+if($posOfQuestionMark > 0){
+    $routeName = substr($uri, 0, $posOfQuestionMark);
 }
 
-require '../views/index.view.php';
+include $router->direct($routeName);

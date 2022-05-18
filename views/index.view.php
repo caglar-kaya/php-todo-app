@@ -3,9 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <title>PHP Todo App</title>
+        <link rel="stylesheet" href="/css/index.css">
     </head>
     <body>
-        <form method="post" action="create.php">
+        <form method="post" action="create">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" class="inputText" placeholder="enter todo title"><br><br>
             <label for="assign">Assigned to:</label>
