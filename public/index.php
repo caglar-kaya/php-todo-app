@@ -11,13 +11,6 @@ $router = new Router();
 
 $router->define($routes);
 
-$uri = trim($_SERVER['REQUEST_URI'], '/');
+$uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-$routeName = $uri;
-
-$posOfQuestionMark = strpos($uri,'?');
-if($posOfQuestionMark > 0){
-    $routeName = substr($uri, 0, $posOfQuestionMark);
-}
-
-include $router->direct($routeName);
+include $router->direct($uri);
