@@ -1,15 +1,18 @@
 <?php
-include 'connection.php';
-include 'TodoItem.php';
 
 class TodoItemRepository {
 
+    /**
+     * @return array | TodoItem[]
+     */
     public function getAll(): array {
+
         $connection = new Connection();
         $conn = $connection->create();
 
-        $sql = "SELECT * FROM todoItems";
-        $result = $conn->query($sql);
+        $stmt = $conn->prepare("SELECT * FROM todoItems");
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         $list = [];
 
@@ -24,46 +27,66 @@ class TodoItemRepository {
         return $list;
     }
 
-    public function createTodo(): void {
+
+    public function getByID($id): ?TodoItem {
+
+        $todos = $this->getAll();
+
+        foreach($todos as $todo) {
+            if($todo->id == $id){
+                return $todo;
+            }
+        }
+
+        return null;
+    }
+
+    public function createTodo($title, $assign): void {
         $connection = new Connection();
         $conn = $connection->create();
 
-        $sql = "INSERT INTO `php-todo-app`.`todoItems` (`title`, `assignedTo`) VALUES ('{$_POST["title"]}', '{$_POST["assign"]}')";
+        $stmt = $conn->prepare("INSERT INTO `php-todo-app`.`todoItems` (`title`, `assignedTo`) VALUES (?, ?)");
+        $stmt->bind_param('ss', $title, $assign);
+        $stmt->execute();
 
-        if ($conn->query($sql) === TRUE) {
-            echo "<h3>New todo assigned to {$_POST["assign"]} successfully!</h3>";
+        if ($stmt->affected_rows === 1) {
+            echo "<h3>New todo assigned to $assign successfully!</h3>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error for create: " . $stmt->error;
         }
 
         $conn->close();
     }
 
-    public function deleteTodo(): void {
+    public function deleteTodo($id, $assign): void {
         $connection = new Connection();
         $conn = $connection->create();
 
-        $sql = "DELETE FROM `php-todo-app`.`todoItems` WHERE  `id`={$_GET['id']}";
+        $stmt = $conn->prepare("DELETE FROM `php-todo-app`.`todoItems` WHERE  `id`= ? ");
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
 
-        if ($conn->query($sql) === TRUE) {
-            echo "<h3>{$_GET['assign']}'s todo deleted successfully!</h3>";
+        if ($stmt->affected_rows === 1) {
+            echo "<h3>$assign's todo deleted successfully!</h3>";
         } else {
-            echo "Error deleting record: " . $conn->error;
+            echo "Error for delete: " . $stmt->error;
         }
 
         $conn->close();
     }
 
-    public function updateTodo(): void {
+    public function updateTodo($title, $assign, $completed, $id): void {
         $connection = new Connection();
         $conn = $connection->create();
 
-        $sql = "UPDATE `php-todo-app`.`todoItems` SET `title`='{$_POST["title"]}', `assignedTo`='{$_POST["assign"]}', `completed`='{$_POST["complete"]}' WHERE  `id`={$_POST["id"]}";
+        $stmt = $conn->prepare("UPDATE `php-todo-app`.`todoItems` SET `title`= ?, `assignedTo`= ?, `completed`= ? WHERE  `id`= ? ");
+        $stmt->bind_param('ssds', $title, $assign, $completed, $id);
+        $stmt->execute();
 
-        if ($conn->query($sql) === TRUE) {
-            echo "<h3>Todo updated for {$_POST["assign"]} successfully!</h3>";
+        if ($stmt->affected_rows === 1) {
+            echo "<h3>Todo updated for $assign successfully!</h3>";
         } else {
-            echo "Error updating record: " . $conn->error;
+            echo "Error for update: " . $stmt->error;
         }
 
         $conn->close();

@@ -8,6 +8,8 @@ include '../vendor/autoload.php';
 
 include '../router/routes.php';
 
+ray()->clearScreen();
+
 $router = new Router();
 
 $router->define($routes);
