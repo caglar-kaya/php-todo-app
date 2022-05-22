@@ -1,5 +1,8 @@
 <?php
 
+use App\Connection;
+use Database\TodoItem;
+
 class TodoItemRepository {
 
     /**

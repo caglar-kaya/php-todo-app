@@ -1,5 +1,7 @@
 <?php
 
+namespace Database;
+
 class TodoItem {
     public int $id;
     public string $title;

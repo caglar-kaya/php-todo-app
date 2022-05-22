@@ -1,5 +1,9 @@
 <?php
 
+namespace App;
+
+use mysqli;
+
 class Connection {
     function create() {
         $config = require '../config.php';
